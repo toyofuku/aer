@@ -11,8 +11,6 @@ function visualize() {
 	    width = 640 - margin.left - margin.right,
 	    height = 400 - margin.top - margin.bottom;
 
-	var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S").parse;
-
 	var x = d3.time.scale().range([0, width]);
 	var y = d3.scale.linear().range([height,0]);
 	var xAxis = d3.svg.axis().scale(x).orient("bottom");
@@ -30,7 +28,7 @@ function visualize() {
 
 	{
 	  data.forEach(function(d) {
-	    d.datetime = parseDate(d.datetime.substr(0,19));
+		d.datetime = new Date(d.datetime);
 	    d.celsius = d.celsius;
 	  });
 

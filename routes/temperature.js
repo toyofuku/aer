@@ -34,11 +34,9 @@ exports.list = function(req, res){
   client.llen("temperature", function(err, rllen){
     client.lrange("temperature", 0, rllen, function(err, rlrange){
       var list = rlrange.map(function(x){
-        var t = JSON.parse(x);
-//        t.datetime = Date(t.datetime);
-        return t;
+        return JSON.parse(x);
       });
-      res.send(JSON.stringify(list) + "\n");
+      res.send(JSON.stringify(list));
     });
   });
 };
