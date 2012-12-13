@@ -13,7 +13,7 @@ client.on('error', function(e){
   util.log('redis_err ' + String(e))
 });
 
-exports.command = function(req, res){
+exports.handler = function(req, res){
   var newTemperature = {};
   newTemperature.celsius = parseFloat(req.body.celsius);
   newTemperature.datetime = new Date();
@@ -33,8 +33,16 @@ exports.command = function(req, res){
 exports.list = function(req, res){
   client.llen("temperature", function(err, rllen){
     client.lrange("temperature", 0, rllen, function(err, rlrange){
-      console.log(rlrange);
-      res.send(JSON.stringify(rlrange) + "\n");
+      var list = rlrange.map(function(x){
+        var t = JSON.parse(x);
+//        t.datetime = Date(t.datetime);
+        return t;
+      });
+      res.send(JSON.stringify(list) + "\n");
     });
   });
+};
+
+exports.command = function(req, res){
+  client.set("command", req.body.command);
 };

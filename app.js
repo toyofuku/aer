@@ -28,8 +28,10 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/chart', routes.chart);
 app.get('/temperature', temperature.list);
-app.post('/temperature', temperature.command);
+app.post('/temperature', temperature.handler);
+app.post('/command', temperature.command);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
