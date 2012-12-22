@@ -1,8 +1,12 @@
 var data;
 
-d3.json('http://ec2-175-41-206-164.ap-northeast-1.compute.amazonaws.com:3000/temperature', function(d){
+d3.json('/temperature', function(d){
   data = d;
   visualize();
+});
+
+$('a').live('click',function(event){
+  $.post('/command',{'command':'heater on'});
 });
 
 function visualize() {
@@ -20,7 +24,7 @@ function visualize() {
 	    .x(function(d) { return x(d.datetime); })
 	    .y(function(d) { return y(d.celsius); });
 
-	var svg = d3.select("body").append("svg")
+	var svg = d3.select("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
 	    .append("g")

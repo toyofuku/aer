@@ -43,4 +43,5 @@ exports.list = function(req, res){
 
 exports.command = function(req, res){
   client.set("command", req.body.command);
+  res.send();
 };
