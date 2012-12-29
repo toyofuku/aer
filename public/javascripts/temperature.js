@@ -1,24 +1,41 @@
 var data;
 
 d3.json('/temperature', function(d){
-  data = d;
-  visualize();
+	data = d;
+	visualize();
 });
 
 $('a').live('click',function(event){
-  $.post('/command',{'command':'heater on'});
+    var cmd = '';
+    switch($('span.ui-btn-text', this).text()){
+    case 'Heater':
+      cmd = 'heater on';
+      break;
+    case 'Cooler':
+      cmd = 'cooler on';
+      break;
+    case 'Poweroff':
+      cmd = 'power off';
+    }
+    $.post('/command',{'command': cmd});
 });
 
 function visualize() {
-  
-	var margin = {top: 20, right: 20, bottom: 30, left: 70},
-	    width = 640 - margin.left - margin.right,
-	    height = 400 - margin.top - margin.bottom;
+    var _w = d3.select("svg").style("width"),
+        _h = d3.select("svg").style("height");
+
+	var margin = {top: 20, right: 20, bottom: 130, left: 30},
+	    width = parseInt(_w,10) - margin.left - margin.right,
+	    height = parseInt(_h,10) - margin.top - margin.bottom;
 
 	var x = d3.time.scale().range([0, width]);
 	var y = d3.scale.linear().range([height,0]);
-	var xAxis = d3.svg.axis().scale(x).orient("bottom");
-	var yAxis = d3.svg.axis().scale(y).orient("left");
+
+	var xAxis = d3.svg.axis().scale(x)
+	    .tickFormat(d3.time.format("%d"))
+	    .orient("bottom");
+	var yAxis = d3.svg.axis().scale(y)
+	    .orient("left");
 
 	var line = d3.svg.line()
 	    .x(function(d) { return x(d.datetime); })
@@ -32,12 +49,12 @@ function visualize() {
 
 	{
 	  data.forEach(function(d) {
-		d.datetime = new Date(d.datetime);
+	    d.datetime = new Date(d.datetime);
 	    d.celsius = d.celsius;
 	  });
 
 	  x.domain(d3.extent(data, function(d) { return d.datetime; }));
-	  y.domain(d3.extent(data, function(d) { return d.celsius; }));
+	  y.domain([5,35]);
 
 	  svg.append("g")
 	      .attr("class", "x axis")
