@@ -9,11 +9,11 @@ html(lang='ja')
     script(src='http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js')
   body
     div(data-role='page')
-      div(data-role='header')
+      div(data-role='header', class='ui-bar ui-bar-b')
         div(data-role="controlgroup", data-type="horizontal")
-          a(href="#", data-role="button") Heater
-          a(href="#", data-role="button") Cooler
-          a(href="#", data-role="button") Poweroff
+          a(href="#", data-role="button", data-theme="c") Heater
+          a(href="#", data-role="button", data-theme="c") Cooler
+          a(href="#", data-role="button", data-theme="c") Poweroff
       div(data-role='content')
         svg
     script(src='http://d3js.org/d3.v2.js')

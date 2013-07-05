@@ -54,7 +54,7 @@ function visualize() {
 	  });
 
 	  x.domain(d3.extent(data, function(d) { return d.datetime; }));
-	  y.domain([5,35]);
+	  y.domain([0,60]);
 
 	  svg.append("g")
 	      .attr("class", "x axis")
