@@ -79,3 +79,8 @@ function visualize() {
   }
 
 }
+
+var sse = new EventSource('/monitor');
+sse.onmessage = function(event){
+  $('#celsius').text(event.data);
+};

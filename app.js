@@ -30,6 +30,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/chart', routes.chart);
 app.get('/temperature', temperature.list);
+app.get('/monitor', temperature.monitor);
 app.post('/temperature', temperature.handler);
 app.post('/command', temperature.command);
 
