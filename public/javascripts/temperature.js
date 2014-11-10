@@ -22,10 +22,10 @@ $(document).on('click','a',function(){
 });
 
 function visualize() {
-  var _w = d3.select("svg").style("width"),
-      _h = d3.select("svg").style("height");
+  var _w = $(window).width(),
+      _h = $(window).height();
 
-  var margin = {top: 20, right: 20, bottom: 130, left: 30},
+  var margin = {top: 20, right: 30, bottom: 130, left: 30},
       width = parseInt(_w,10) - margin.left - margin.right,
       height = parseInt(_h,10) - margin.top - margin.bottom;
 

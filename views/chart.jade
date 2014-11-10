@@ -9,12 +9,16 @@ html(lang='ja')
     script(src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js')
   body
     div(data-role='page')
-      div(data-role='header', class='ui-bar ui-bar-b')
-        div(data-role="controlgroup", data-type="horizontal")
-          a(href="#", data-role="button", data-theme="c") Heater
-          a(href="#", data-role="button", data-theme="c") Cooler
-          a(href="#", data-role="button", data-theme="c") Poweroff
-      div(data-role='content')
-        svg(width='300', height='300')
+      div(data-role='header')
+        div(data-role='navbar')
+          ul
+            li
+              a(href='#') Heater
+            li
+              a(href='#') Cooler
+            li
+              a(href='#') Poweroff
+      div(class='ui-content', role="main")
+        svg
     script(src='http://d3js.org/d3.v3.js')
     script(src='/javascripts/temperature.js')
