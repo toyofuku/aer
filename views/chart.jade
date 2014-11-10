@@ -3,10 +3,10 @@ html(lang='ja')
   head
     title= title
     meta(name='viewport', content='width=device-width,initial-scale=1')
-    link(rel='stylesheet', href='http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css')
+    link(rel='stylesheet', href='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='http://code.jquery.com/jquery-1.7.1.min.js')
-    script(src='http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js')
+    script(src='http://code.jquery.com/jquery-1.11.0.min.js')
+    script(src='http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js')
   body
     div(data-role='page')
       div(data-role='header', class='ui-bar ui-bar-b')
@@ -15,6 +15,6 @@ html(lang='ja')
           a(href="#", data-role="button", data-theme="c") Cooler
           a(href="#", data-role="button", data-theme="c") Poweroff
       div(data-role='content')
-        svg
-    script(src='http://d3js.org/d3.v2.js')
+        svg(width='300', height='300')
+    script(src='http://d3js.org/d3.v3.js')
     script(src='/javascripts/temperature.js')
